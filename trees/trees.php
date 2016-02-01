@@ -1,8 +1,36 @@
 <?php
 
-if (!function_exists('trees')) {
+if (!function_exists('trees_mutli')) {
     /**
      * 输出树状数组.
+     *
+     * @param array $data  传入数组
+     * @param int   $pid   父亲级别id
+     * @param int   $level 分类层级
+     *
+     * @return [type] [description]
+     */
+    function trees_mutli(array $data, $pid = 0, $level = 0)
+    {
+        ++$level;
+        $subs = [];
+        foreach ($data as $key => $value) {
+            // 如果当前值数组属于父级别就开始合并函数
+            if ($value['pid'] == $pid) {
+                // 将父亲自己函数压入父亲级别后面
+                $value['level']    = $level;
+                $value['children'] = trees_mutli($data, $value['id'], $level);
+                $subs[]            = $value;
+            }
+        }
+
+        return $subs;
+    }
+}
+
+if (!function_exists('trees')) {
+    /**
+     * 输出以为数组.
      *
      * @param array $data  传入数组
      * @param int   $pid   父亲级别id
@@ -75,4 +103,60 @@ print_r(trees($arr));
         )
 
 )
+ */
+
+print_r(trees_mutli($arr));
+/*
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [name] => 父亲级别1
+            [pid] => 0
+            [level] => 1
+            [children] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [name] => 父亲级别1的子级别1
+                            [pid] => 1
+                            [level] => 2
+                            [children] => Array
+                                (
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 3
+                            [name] => 父亲级别1的子级别2
+                            [pid] => 1
+                            [level] => 2
+                            [children] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [id] => 4
+                                            [name] => 父亲级别1的子级别2的子级别1
+                                            [pid] => 3
+                                            [level] => 3
+                                            [children] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+
  */
