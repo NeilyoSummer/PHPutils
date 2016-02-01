@@ -15,10 +15,10 @@ if (!function_exists('trees_mutli')) {
         ++$level;
         $subs = [];
         foreach ($data as $key => $value) {
-            // 如果当前值数组属于父级别就开始合并函数
+            // 遍历级别
             if ($value['pid'] == $pid) {
-                // 将父亲自己函数压入父亲级别后面
-                $value['level']    = $level;
+                $value['level'] = $level;
+                // 将子集压入父类的标签中
                 $value['children'] = trees_mutli($data, $value['id'], $level);
                 $subs[]            = $value;
             }
@@ -30,7 +30,7 @@ if (!function_exists('trees_mutli')) {
 
 if (!function_exists('trees')) {
     /**
-     * 输出以为数组.
+     * 输出一维数组.
      *
      * @param array $data  传入数组
      * @param int   $pid   父亲级别id
