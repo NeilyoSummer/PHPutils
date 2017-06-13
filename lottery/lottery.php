@@ -10,22 +10,22 @@
     配置：
         100% 中奖策略
             [
-                ['id' => 1, 'name' => '一等奖', 'count' => 2, 'probability' => 5],
-                ['id' => 2, 'name' => '二等奖', 'count' => 10, 'probability' => 10],
-                ['id' => 3, 'name' => '三等奖', 'count' => 20, 'probability' => 20],
-                ['id' => 4, 'name' => '四等奖', 'count' => 20, 'probability' => 30],
-                ['id' => 5, 'name' => '五等奖', 'count' => 20, 'probability' => 40],
-                ['id' => 6, 'name' => '六等奖', 'count' => 20, 'probability' => 50],
+                ['id' => 1, 'name' => '一等奖', 'probability' => 5],
+                ['id' => 2, 'name' => '二等奖', 'probability' => 10],
+                ['id' => 3, 'name' => '三等奖', 'probability' => 20],
+                ['id' => 4, 'name' => '四等奖', 'probability' => 30],
+                ['id' => 5, 'name' => '五等奖', 'probability' => 40],
+                ['id' => 6, 'name' => '六等奖', 'probability' => 50],
             ]
         正常中奖策略
             [
-                ['id' => 1, 'name' => '一等奖', 'count' => 2, 'probability' => 5],
-                ['id' => 2, 'name' => '二等奖', 'count' => 10, 'probability' => 10],
-                ['id' => 3, 'name' => '三等奖', 'count' => 20, 'probability' => 10],
-                ['id' => 4, 'name' => '四等奖', 'count' => 20, 'probability' => 10],
-                ['id' => 5, 'name' => '五等奖', 'count' => 20, 'probability' => 10],
-                ['id' => 6, 'name' => '六等奖', 'count' => 20, 'probability' => 10],
-                ['id' => 7, 'name' => '无奖品', 'count' => 100, 'probability' => 50],
+                ['id' => 1, 'name' => '一等奖', 'probability' => 5],
+                ['id' => 2, 'name' => '二等奖', 'probability' => 10],
+                ['id' => 3, 'name' => '三等奖', 'probability' => 10],
+                ['id' => 4, 'name' => '四等奖', 'probability' => 10],
+                ['id' => 5, 'name' => '五等奖', 'probability' => 10],
+                ['id' => 6, 'name' => '六等奖', 'probability' => 10],
+                ['id' => 7, 'name' => '无奖品', 'probability' => 50],
             ]
     输入：
         抽奖次数
@@ -103,7 +103,7 @@ class Lucky
 
         if ($current_bingo_times <= 0) {
             // 返回不中奖数据
-            return ['id' => 7, 'name' => '无奖品', 'count' => 100, 'probability' => 100];
+            return ['id' => 7, 'name' => '无奖品', 'probability' => 100];
         }
 
         // 开始正常的中奖逻辑
